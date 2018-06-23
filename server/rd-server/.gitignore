@@ -1,0 +1,7 @@
+# arquivos gerados pelo compilador typescript (tsc)
+*.js
+*.js.map
+/typeScript
+
+# dependencies
+/node_modules
