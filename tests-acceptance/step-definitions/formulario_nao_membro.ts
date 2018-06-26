@@ -36,5 +36,10 @@ defineSupportCode(function ({ Given, When, Then }) {
     	await expect(msg.getText()).toEqual(<string> msgerror); //.toBe
     })
 
+        Then(/^eu vejo uma mensagem de confirmação para "(.*?)"$/, async (msgconf) => {
+    	var msg = element(by.name('msg'));
+    	await expect(msg.getText()).toEqual(<string> msgconf); //.toBe
+    });
+
 })
 
