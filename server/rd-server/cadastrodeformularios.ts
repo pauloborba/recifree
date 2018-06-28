@@ -17,7 +17,13 @@ export class CadastroDeFormularios {
   emailNaoCadastrado(email: string): boolean {
 	  return !this.formularios.find(f => f.email == email);
   }
-
+  
+  atualizar(formulario: Formulario): Formulario {
+    var aux: Formulario = this.formularios.find(f => f.email == formulario.email);
+    if (aux) { aux.copy(formulario); }
+    return aux;
+  }
+  
   getFormularios(): Formulario[] {
     return this.formularios;
   }

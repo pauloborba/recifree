@@ -34,6 +34,16 @@ app.post('/formulario', function (req: express.Request, res: express.Response) {
 	}
 })
 
+app.put('/formulario', function (req: express.Request, res: express.Response) {
+	console.log('PUT /formulario: ' + req)
+	var formulario: Formulario = <Formulario> req.body;
+	formulario = cadastroForm.atualizar(formulario);
+	if (formulario) {
+		res.send({"success": "Formulário atualizado com sucesso"});
+	} else {
+		res.send({"failure": "Formulário não atualizado"});
+	}
+})
 
 var server = app.listen(3000, function () {
   console.log('Recifree app listening on port 3000!')
