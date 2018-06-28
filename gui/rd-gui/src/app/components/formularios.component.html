@@ -45,6 +45,13 @@
 	<td *ngIf="!camposPreenchidos" (mousemove)="resetCamposPreenchidos()" name="msgerro">* Preencha todos os campos.</td>
 	<button (click)="cadastrarFormulario(formulario)">Enviar</button>
 
+<tr *ngIf="emailCadastrado">
+	<td>E-mail já cadastrado.</td>
+	<td><button (click)="atualizarCadastro(formulario)">Atualizar formulário</button></td>
+	<td><button (click)="cancelar()">Cancelar</button></td>
+</tr>
+
+<td *ngIf="foiAtualizado" (mousemove)="resetMensagem()" name="msg">Formulário atualizado com sucesso!</td>
 <td *ngIf="foiCadastrado" (mousemove)="resetMensagem()" name="msg">Formulário cadastrado com sucesso!</td>
 
 </form>

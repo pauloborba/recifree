@@ -23,7 +23,18 @@ export class FormularioService {
 		 .catch(this.tratarErro);
 	}
 	
-
+	atualizar(formulario: Formulario): Promise<Formulario> {
+    return this.http.put(this.rdURL + "/formulario",JSON.stringify(formulario), {headers: this.headers})
+         .toPromise()
+         .then(res => {
+            if (res.json().success) {
+				//this.confirm('Formulário atualizado com sucesso!');
+				return formulario;
+			} else {return null;}
+         })
+         .catch(this.tratarErro);
+	}
+	
 	getFormularios(): Promise<Formulario[]> {
     return this.http.get(this.rdURL + "/formulariosdata") //salva na outra pagina
              .toPromise()

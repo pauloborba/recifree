@@ -13,12 +13,13 @@ import { FormularioService } from './formulario.service';
 
 export class FormulariosComponent implements OnInit {
 	
-	constructor(private formularioService: FormularioService) {}
+constructor(private formularioService: FormularioService) {}
 	
 	formulario: Formulario = new Formulario();
 	formularios: Formulario[] = [];
 	
 	emailCadastrado: boolean = false;
+	foiAtualizado: boolean = false;
 	foiCadastrado: boolean = false;
 	camposPreenchidos: boolean = false;
 
@@ -41,13 +42,26 @@ export class FormulariosComponent implements OnInit {
 		}
 	}
 	
-	cancelar(): void {
-		this.emailCadastrado = false;
-	}
+	atualizarCadastro(formulario: Formulario): void {
+		this.isTodosCamposPreenchidos(formulario);
 		
+		if (this.camposPreenchidos) {
+		this.formularioService.atualizar(formulario);
+		this.foiAtualizado = true;
+		this.resetEmail();
+		}
+	}
+	
+	cancelar(): void {
+		this.resetEmail();
+	}
+	
+	resetEmail(): void { this.emailCadastrado = false; }
+	
 	resetCamposPreenchidos(): void { this.camposPreenchidos = false; }
 	
 	resetMensagem(): void {
+		this.foiAtualizado = false;
 		this.foiCadastrado = false;
 	}
 	
