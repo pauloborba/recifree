@@ -1,10 +1,12 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
+import { Formulario } from '../../gui/rd-gui/src/app/components/formulario';
+import { CadastroDeFormularios } from './cadastrodeformularios';
 
 var app = express();
 
-
+var cadastroForm: CadastroDeFormularios = new CadastroDeFormularios();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -16,20 +18,25 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
-app.get('/noticias', function (req, res) {
-
+app.get('/formulariosdata', function (req, res) {
+	console.log('GET /formulariosdata: ' + req)
+	res.send(JSON.stringify(cadastroForm.getFormularios()));
 })
 
-app.post('/noticia', function (req: express.Request, res: express.Response) {
-
+app.post('/formulario', function (req: express.Request, res: express.Response) {
+	console.log('POST /formulario: ' + req)
+	var formulario: Formulario = <Formulario> req.body;
+	formulario = cadastroForm.cadastrar(formulario);
+	if (formulario) {
+		res.send({"success": "Formulário cadastrado com sucesso"});
+	} else {
+		res.send({"failure": "Formulário não cadastrado"});
+	}
 })
 
-app.put('/noticia', function (req: express.Request, res: express.Response) {
-
-})
 
 var server = app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Recifree app listening on port 3000!')
 })
 
 function closeServer(): void {
