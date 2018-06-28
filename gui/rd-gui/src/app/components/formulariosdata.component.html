@@ -1,0 +1,29 @@
+<table>
+
+<h1>Formulários cadastrados</h1>
+
+<tr>
+<th>Nome</th>
+<th>E-mail</th>
+<th>Idade</th>
+<th>Telefone</th>
+<th>Ocupação</th>
+<th>Endereço</th>
+<th>Pergunta 1</th>
+<th>Pergunta 2</th>
+<th>Pergunta 3</th>
+</tr>
+
+<tr *ngFor="let f of formularios">
+   <td>{{f.nome}}</td>
+   <td>{{f.email}}</td>
+   <td>{{f.idade}}</td>
+   <td>{{f.telefone}}</td>
+   <td>{{f.ocupacao}}</td>
+   <td>{{f.endereco}}</td>
+   <td>{{f.pergunta1}}</td>
+   <td>{{f.pergunta2}}</td>
+   <td>{{f.pergunta3}}</td>
+</tr>
+
+</table>
