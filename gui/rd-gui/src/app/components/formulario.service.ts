@@ -47,10 +47,10 @@ export class FormularioService {
 		return Promise.reject(erro.message || erro);
 	}
 	
-	/*
+	
  	confirm(mensagem : string) {
         return new Promise(resolve => {
             return resolve(window.confirm(mensagem));
         });
-    } */
+    } 
 }

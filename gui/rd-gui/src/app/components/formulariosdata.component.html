@@ -14,9 +14,9 @@
 <th>Pergunta 3</th>
 </tr>
 
-<tr *ngFor="let f of formularios">
-   <td>{{f.nome}}</td>
-   <td>{{f.email}}</td>
+<tr *ngFor="let f of formularios" name="lista_formularios">
+   <td name="lista_nomes">{{f.nome}}</td>
+   <td name="lista_emails">{{f.email}}</td>
    <td>{{f.idade}}</td>
    <td>{{f.telefone}}</td>
    <td>{{f.ocupacao}}</td>

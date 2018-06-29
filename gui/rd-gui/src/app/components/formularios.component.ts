@@ -13,7 +13,7 @@ import { FormularioService } from './formulario.service';
 
 export class FormulariosComponent implements OnInit {
 	
-constructor(private formularioService: FormularioService) {}
+	constructor(private formularioService: FormularioService) {}
 	
 	formulario: Formulario = new Formulario();
 	formularios: Formulario[] = [];
@@ -24,6 +24,7 @@ constructor(private formularioService: FormularioService) {}
 	camposPreenchidos: boolean = false;
 
 	cadastrarFormulario(formulario: Formulario): void {
+		this.resetMensagem();
 		this.isTodosCamposPreenchidos(formulario);
 		
 		if (this.camposPreenchidos) {
@@ -43,6 +44,7 @@ constructor(private formularioService: FormularioService) {}
 	}
 	
 	atualizarCadastro(formulario: Formulario): void {
+		this.resetMensagem();
 		this.isTodosCamposPreenchidos(formulario);
 		
 		if (this.camposPreenchidos) {
@@ -89,6 +91,7 @@ constructor(private formularioService: FormularioService) {}
 		this.formularioService.getFormularios()
 		.then(formularios => this.formularios = formularios)
 		.catch(erro => alert(erro));
+		this.resetMensagem();
 	}
 	
 }
