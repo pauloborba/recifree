@@ -20,6 +20,6 @@ exports.config = {
         compiler: "ts:ts-node/register",
         strict: true,
         format: ['pretty'],
-        require: ['../../stepdefinitions/*.ts'],
+        require: ['../../step-definitions/*.ts'],
     }
 };
