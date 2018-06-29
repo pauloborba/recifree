@@ -6,8 +6,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './components/app.component';
 import { AppHeaderComponent } from './header/app-header.component';
-import { LoginComponent } from './components/login.component';
+import { CriarNoticiaComponent } from './components/criarnoticia.component';
 import { NoticiasComponent } from './components/noticias.component';
+import { VerNoticiaComponent } from './components/vernoticia.component';
+
 
 import { NoticiaService } from './components/noticia.service';
 
@@ -15,8 +17,10 @@ import { NoticiaService } from './components/noticia.service';
   declarations: [
     AppComponent,
     AppHeaderComponent,
-    LoginComponent,
-    NoticiasComponent
+    CriarNoticiaComponent,
+    NoticiasComponent,
+    VerNoticiaComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -28,9 +32,14 @@ import { NoticiaService } from './components/noticia.service';
         component: NoticiasComponent
       },
       {
-        path: 'login',
-        component: LoginComponent
-      }
+        path: 'criarnoticia',
+        component: CriarNoticiaComponent
+      },
+      {
+        path: 'vernoticia',
+        component: VerNoticiaComponent
+      },
+
       
 ])
   ],

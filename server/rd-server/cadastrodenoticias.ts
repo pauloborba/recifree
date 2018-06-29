@@ -23,7 +23,8 @@ export class CadastroDeNoticias {
     return result;
   }
 
-  getAlunos(): Noticia[] {
+  getNoticias(): Noticia[] {
     return this.noticias;
   }
 }
+

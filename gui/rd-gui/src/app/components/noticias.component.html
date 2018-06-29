@@ -1,16 +1,17 @@
-<app-header title='Momentz-4-ever'></app-header>
-<h1>Noticias</h1>
-<button>criar noticia<button>
+<h1>Noticias:</h1>
+<a routerLink="/criarnoticia"><button routerLink="/criarnoticia">Criar</button></a>
 <table>
 	<tr>
 		<th>Título</th>
 		<th>Descrição</th>
 		<th>data da criação</th>
+		<th></th>
 	</tr>
-	<tr *ngFor="let a of noticias">
+	<tr *ngFor="let a of noticias" name="noticiaslist">
 		<td name="titulo">{{a.titulo}}</td>
 		<td>{{a.descricao}}</td>
 		<td>{{a.data}}</td>
+		<td><button (click)="abrirNoticia(a)" routerLink="/vernoticia">Abrir</button>
 	</tr>
 
 </table>
