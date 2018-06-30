@@ -43,12 +43,12 @@
 	</div>
 	
 	<td *ngIf="!isTodosCamposPreenchidos(formulario)" name="msg">* Preencha todos os campos.</td>
-	<button (click)="cadastrarFormulario(formulario)">Enviar</button>
+	<button (click)="cadastrarFormulario(formulario)" id="buttonEnviar">Enviar</button>
 
 <tr *ngIf="emailCadastrado">
 	<td name="msg">E-mail já cadastrado.</td>
-	<td><button (click)="atualizarCadastro(formulario)">Atualizar formulário</button></td>
-	<td><button (click)="cancelar()">Cancelar</button></td>
+	<td><button (click)="atualizarCadastro(formulario)" id="buttonAtualizar">Atualizar formulário</button></td>
+	<td><button (click)="cancelar()" id="buttonCancelar">Cancelar</button></td>
 </tr>
 
 <td *ngIf="foiAtualizado" (mousemove)="resetMensagem()" name="msg" id="atualizado">Formulário atualizado com sucesso!</td>

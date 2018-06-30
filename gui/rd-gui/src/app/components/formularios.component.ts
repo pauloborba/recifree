@@ -34,6 +34,7 @@ export class FormulariosComponent implements OnInit {
 				this.foiCadastrado = true;
 			} else {
 				this.emailCadastrado = true;
+				this.disableButton("buttonEnviar");
 			}
 		})
 		.catch(erro => alert(erro));
@@ -48,6 +49,7 @@ export class FormulariosComponent implements OnInit {
 		this.formularioService.atualizar(formulario);
 		this.foiAtualizado = true;
 		this.resetEmail();
+		this.enableButton("buttonEnviar");
 		}
 	}
 	
@@ -76,6 +78,14 @@ export class FormulariosComponent implements OnInit {
 			!this.isEmpty(formulario.pergunta1) && 
 			!this.isEmpty(formulario.pergunta2) && 
 			!this.isEmpty(formulario.pergunta3));
+	}
+	
+	disableButton(id: string): void {
+		(<HTMLInputElement> document.getElementById(id)).disabled = true;
+	}
+	
+	enableButton(id: string): void {
+		(<HTMLInputElement> document.getElementById(id)).disabled = false;
 	}
 	
 	ngOnInit(): void {
