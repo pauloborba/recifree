@@ -26,6 +26,7 @@ export class FormulariosComponent implements OnInit {
 		this.resetMensagem();
 		
 		if (this.isTodosCamposPreenchidos(formulario)) {
+			this.hideElement("msgCamposVazios",true);
 		this.formularioService.cadastrar(formulario)
 		.then(novof => {
 			if (novof) {
@@ -34,11 +35,13 @@ export class FormulariosComponent implements OnInit {
 				this.foiCadastrado = true;
 			} else {
 				this.emailCadastrado = true;
-				this.disableButton("buttonEnviar");
+				this.disableButton("buttonEnviar",true);
 			}
 		})
 		.catch(erro => alert(erro));
 		
+		} else {
+			this.hideElement("msgCamposVazios",false);
 		}
 	}
 	
@@ -49,8 +52,9 @@ export class FormulariosComponent implements OnInit {
 		this.formularioService.atualizar(formulario);
 		this.foiAtualizado = true;
 		this.resetEmail();
-		this.enableButton("buttonEnviar");
+		this.disableButton("buttonEnviar",false);
 		}
+		
 	}
 	
 	cancelar(): void {
@@ -80,12 +84,12 @@ export class FormulariosComponent implements OnInit {
 			!this.isEmpty(formulario.pergunta3));
 	}
 	
-	disableButton(id: string): void {
-		(<HTMLInputElement> document.getElementById(id)).disabled = true;
+	hideElement(id: string, state: boolean): void {
+		(<HTMLInputElement> document.getElementById(id)).hidden = state;
 	}
 	
-	enableButton(id: string): void {
-		(<HTMLInputElement> document.getElementById(id)).disabled = false;
+	disableButton(id: string, state: boolean): void {
+		(<HTMLInputElement> document.getElementById(id)).disabled = state;
 	}
 	
 	ngOnInit(): void {
