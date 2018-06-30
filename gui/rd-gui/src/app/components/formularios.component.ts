@@ -21,13 +21,11 @@ export class FormulariosComponent implements OnInit {
 	emailCadastrado: boolean = false;
 	foiAtualizado: boolean = false;
 	foiCadastrado: boolean = false;
-	camposPreenchidos: boolean = false;
 
 	cadastrarFormulario(formulario: Formulario): void {
 		this.resetMensagem();
-		this.isTodosCamposPreenchidos(formulario);
 		
-		if (this.camposPreenchidos) {
+		if (this.isTodosCamposPreenchidos(formulario)) {
 		this.formularioService.cadastrar(formulario)
 		.then(novof => {
 			if (novof) {
@@ -45,9 +43,8 @@ export class FormulariosComponent implements OnInit {
 	
 	atualizarCadastro(formulario: Formulario): void {
 		this.resetMensagem();
-		this.isTodosCamposPreenchidos(formulario);
 		
-		if (this.camposPreenchidos) {
+		if (this.isTodosCamposPreenchidos(formulario)) {
 		this.formularioService.atualizar(formulario);
 		this.foiAtualizado = true;
 		this.resetEmail();
@@ -59,21 +56,18 @@ export class FormulariosComponent implements OnInit {
 	}
 	
 	resetEmail(): void { this.emailCadastrado = false; }
-	
-	resetCamposPreenchidos(): void { this.camposPreenchidos = false; }
-	
+		
 	resetMensagem(): void {
 		this.foiAtualizado = false;
 		this.foiCadastrado = false;
 	}
 	
 	isEmpty(campo: string): boolean {
-		if (campo == "") { return true }
-		return false;
+		return (campo == "");
 	}
 	
-	isTodosCamposPreenchidos(formulario: Formulario): void {
-		if (!this.isEmpty(formulario.nome) &&
+	isTodosCamposPreenchidos(formulario: Formulario): boolean {
+		return (!this.isEmpty(formulario.nome) &&
 		    !this.isEmpty(formulario.idade) && 
 			!this.isEmpty(formulario.telefone) && 
 			!this.isEmpty(formulario.email) && 
@@ -81,10 +75,7 @@ export class FormulariosComponent implements OnInit {
 			!this.isEmpty(formulario.endereco) && 
 			!this.isEmpty(formulario.pergunta1) && 
 			!this.isEmpty(formulario.pergunta2) && 
-			!this.isEmpty(formulario.pergunta3))
-			{
-				this.camposPreenchidos = true;
-			}
+			!this.isEmpty(formulario.pergunta3));
 	}
 	
 	ngOnInit(): void {

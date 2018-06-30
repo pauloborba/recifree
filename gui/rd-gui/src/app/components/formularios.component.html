@@ -42,7 +42,7 @@
 		<textarea [(ngModel)]="formulario.pergunta3" id="pergunta3" name="pergunta3" rows="3" cols="60" required></textarea>
 	</div>
 	
-	<td *ngIf="!camposPreenchidos" (mousemove)="resetCamposPreenchidos()" name="msg">* Preencha todos os campos.</td>
+	<td *ngIf="!isTodosCamposPreenchidos(formulario)" name="msg">* Preencha todos os campos.</td>
 	<button (click)="cadastrarFormulario(formulario)">Enviar</button>
 
 <tr *ngIf="emailCadastrado">
@@ -51,8 +51,8 @@
 	<td><button (click)="cancelar()">Cancelar</button></td>
 </tr>
 
-<td *ngIf="foiAtualizado" (mousemove)="resetMensagem()" name="msg" id="msgatualiza">Formulário atualizado com sucesso!</td>
-<td *ngIf="foiCadastrado" (mousemove)="resetMensagem()" name="msg" id="msgcadastra">Formulário cadastrado com sucesso!</td>
+<td *ngIf="foiAtualizado" (mousemove)="resetMensagem()" name="msg" id="atualizado">Formulário atualizado com sucesso!</td>
+<td *ngIf="foiCadastrado" (mousemove)="resetMensagem()" name="msg" id="cadastrado">Formulário cadastrado com sucesso!</td>
 
 </form>
 
