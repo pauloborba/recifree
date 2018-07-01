@@ -5,9 +5,6 @@ let expect = chai.expect;
 
 let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
-let existeEmail = ((elem, email) => elem.element(by.name('listadeemails')).getText().then(text => text === email));
-
-
 defineSupportCode(function ({ Given, When, Then }) {
 	Given(/^eu estou na página "(.*?)"$/, async (pagina) => {
         await browser.get("http://localhost:4200/"+<string> pagina);
@@ -16,11 +13,12 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Given(/^existe formulário com email "(.*?)" na lista de formulários$/, async (email) => {
     	await browser.get("http://localhost:4200/formulariosdata");
-        var emails : ElementArrayFinder = element.all(by.name('lista_formularios'));
+        var emails : ElementArrayFinder = element.all(by.name('lista_emails'));
         var findEmail = emails.filter(elem =>
                                       elem.getText().then(text => text === email));
         await findEmail;
         await findEmail.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await browser.get("http://localhost:4200/formularios");
     });
 
     When(/preencho o campo "(.*?)" com "(.*?)"$/, async (campo, info) => {
@@ -31,15 +29,12 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText(<string> opcao)).click();
     });
 
-    Then(/^eu vejo uma mensagem de erro para "(.*?)"$/, async (msgerror) => {
-    	var msg = $("[name='msgerro']").getText();
-        await expect(msg).to.eventually.equal(<string> msgerror);
+    Then(/^eu vejo a mensagem "(.*?)"$/, async (msg) => {
+    	var msgs = element.all(by.name('msg'));
+    	var findMsg = msgs.filter(elem => elem.getText().then(text => text === msg));
+        await findMsg;
+        await findMsg.then(elem => expect(Promise.resolve(elem.length)).to.eventually.equal(1));
     })
-
-    Then(/^eu vejo uma mensagem de confirmação para "(.*?)"$/, async (msgconf) => {
-    	var msg = $("[name='msgconf']").getText();
-        await expect(msg).to.eventually.equal(<string> msgconf);
-    });
 
 })
 
