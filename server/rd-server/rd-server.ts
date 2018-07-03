@@ -30,8 +30,8 @@ app.delete('/formulariosdata', function (req: express.Request, res: express.Resp
 });
 
 app.post('/formulario', function (req: express.Request, res: express.Response) {
-	console.log('POST /formulario: ' + req)
 	var formulario: Formulario = <Formulario> req.body;
+	console.log('POST /formulario: ' + req + ' w/ email: ' + formulario.email)
 	formulario = cadastroForm.cadastrar(formulario);
 	if (formulario) {
 		res.send({"success": "Formulário cadastrado com sucesso"});
@@ -41,8 +41,8 @@ app.post('/formulario', function (req: express.Request, res: express.Response) {
 })
 
 app.put('/formulario', function (req: express.Request, res: express.Response) {
-	console.log('PUT /formulario: ' + req)
 	var formulario: Formulario = <Formulario> req.body;
+	console.log('PUT /formulario: ' + req + ' w/ email: ' + formulario.email)
 	formulario = cadastroForm.atualizar(formulario);
 	if (formulario) {
 		res.send({"success": "Formulário atualizado com sucesso"});
