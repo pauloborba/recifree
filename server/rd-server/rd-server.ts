@@ -23,6 +23,12 @@ app.get('/formulariosdata', function (req, res) {
 	res.send(JSON.stringify(cadastroForm.getFormularios()));
 })
 
+app.delete('/formulariosdata', function (req: express.Request, res: express.Response) {
+	var formulario: Formulario = <Formulario> req.body;
+	console.log('DELETE /formulariosdata: ' + req + ' w/ email: ' + formulario.email)
+	res.send(JSON.stringify(cadastroForm.remover(formulario)));
+});
+
 app.post('/formulario', function (req: express.Request, res: express.Response) {
 	console.log('POST /formulario: ' + req)
 	var formulario: Formulario = <Formulario> req.body;

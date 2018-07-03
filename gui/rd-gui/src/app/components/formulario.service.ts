@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Formulario } from './formulario';
@@ -33,6 +33,16 @@ export class FormularioService {
 			} else {return null;}
          })
          .catch(this.tratarErro);
+	}
+
+	remover(formulario: Formulario): Promise<Formulario[]> {
+		return this.http.delete(this.rdURL + "/formulariosdata", new RequestOptions({
+			headers: this.headers,
+			body: formulario
+		}))
+		.toPromise()
+		.then(res => res.json() as Formulario[])
+		.catch(this.tratarErro);
 	}
 	
 	getFormularios(): Promise<Formulario[]> {
