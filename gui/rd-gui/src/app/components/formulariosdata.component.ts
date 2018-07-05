@@ -18,8 +18,12 @@ export class FormulariosDataComponent implements OnInit {
 	formularios: Formulario[];
 	formRemover: Formulario[] = [];
 
-	onChange(formulario: Formulario) {
-		var checkBox = (<HTMLInputElement> document.getElementById(formulario.email));
+	getElement(id: string): HTMLInputElement {
+		return (<HTMLInputElement> document.getElementById(id));
+	}
+
+	onChange(formulario: Formulario): void {
+		var checkBox = this.getElement(formulario.email);
 		var statusValue = checkBox.value;
 		checkBox.value = this.changeValue(statusValue);
 
@@ -49,7 +53,7 @@ export class FormulariosDataComponent implements OnInit {
 
 	selectAll(): void {
 		for (let f of this.formularios) {
-			var checkBox = (<HTMLInputElement> document.getElementById(f.email));
+			var checkBox = this.getElement(f.email);
 			checkBox.checked = true;
 			checkBox.value = 'checked'
 			this.selectf(f);
@@ -58,7 +62,7 @@ export class FormulariosDataComponent implements OnInit {
 
 	deselectAll(): void {
 		for (let f of this.formRemover) {
-			var checkBox = (<HTMLInputElement> document.getElementById(f.email));
+			var checkBox = this.getElement(f.email);
 			checkBox.checked = false;
 			checkBox.value = 'unchecked'
 			this.deselect(f);
@@ -66,7 +70,7 @@ export class FormulariosDataComponent implements OnInit {
 	}
 
 	onChangeAll() {
-		var checkBox = (<HTMLInputElement> document.getElementById('checkAll'));
+		var checkBox = this.getElement('checkAll');
 		var statusValue = checkBox.value;
 		checkBox.value = this.changeValue(statusValue);
 
@@ -109,11 +113,11 @@ export class FormulariosDataComponent implements OnInit {
 	}
 
 	hideMessage(id: string): void {
-		(<HTMLInputElement> document.getElementById(id)).hidden = true;
+		this.getElement(id).hidden = true;
 	}
 
 	showMessage(id: string): void {
-		(<HTMLInputElement> document.getElementById(id)).hidden = false;
+		this.getElement(id).hidden = false;
 	}
 
 	ngOnInit(): void {
