@@ -62,6 +62,12 @@ export class FormulariosDataComponent implements OnInit {
 
 	deselect(formulario: Formulario): void {
 		this.formRemover = this.formRemover.filter(f => f.email !== formulario.email);
+		/* ao desmarcar um item, verifica se checkbox que marca todos esta marcado.
+		Se estiver, ele é desmarcado. */
+		if (this.getElement('checkAll').checked) {
+			this.getElement('checkAll').checked = null;
+			this.getElement('checkAll').value = 'unchecked';
+		}
 	}
 
 	selectAll(): void {
