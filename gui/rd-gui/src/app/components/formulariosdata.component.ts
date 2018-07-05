@@ -58,6 +58,15 @@ export class FormulariosDataComponent implements OnInit {
 		if (!this.formRemover.includes(formulario)) {
 			this.formRemover.push(formulario);
 		}
+		/* ao marcar um item, verifica se todos ficaram marcados,
+		ou seja, que os arrays tem o mesmo tamanho. Se for verdade, o checkbox
+		que marca todos é marcado.
+		*/
+		if (this.formRemover.length == this.formularios.length) {
+			this.getElement('checkAll').checked = true;
+			this.getElement('checkAll').value = 'checked';
+		}
+
 	}
 
 	deselect(formulario: Formulario): void {
