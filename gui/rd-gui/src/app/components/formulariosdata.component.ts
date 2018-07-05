@@ -63,10 +63,8 @@ export class FormulariosDataComponent implements OnInit {
 		que marca todos é marcado.
 		*/
 		if (this.formRemover.length == this.formularios.length) {
-			this.getElement('checkAll').checked = true;
-			this.getElement('checkAll').value = 'checked';
+			this.changeCheckboxStatus('checkAll', true, 'checked');
 		}
-
 	}
 
 	deselect(formulario: Formulario): void {
@@ -74,9 +72,13 @@ export class FormulariosDataComponent implements OnInit {
 		/* ao desmarcar um item, verifica se checkbox que marca todos esta marcado.
 		Se estiver, ele é desmarcado. */
 		if (this.getElement('checkAll').checked) {
-			this.getElement('checkAll').checked = null;
-			this.getElement('checkAll').value = 'unchecked';
+			this.changeCheckboxStatus('checkAll', null, 'unchecked');
 		}
+	}
+
+	changeCheckboxStatus(elementID: string, statusCheck: boolean, statusValue: string): void {
+		this.getElement(elementID).checked = statusCheck;
+		this.getElement(elementID).value = statusValue;
 	}
 
 	selectAll(): void {
