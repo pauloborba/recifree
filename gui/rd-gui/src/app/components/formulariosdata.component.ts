@@ -52,24 +52,27 @@ export class FormulariosDataComponent implements OnInit {
 	}
 
 	selectAll(): void {
-		for (let f of this.formularios) {
-			var checkBox = this.getElement(f.email);
-			checkBox.checked = true;
-			checkBox.value = 'checked'
-			this.selectf(f);
-		}
+		this.auxSelect(this.formularios, true, 'checked');
 	}
 
 	deselectAll(): void {
-		for (let f of this.formRemover) {
-			var checkBox = this.getElement(f.email);
-			checkBox.checked = false;
-			checkBox.value = 'unchecked'
-			this.deselect(f);
-		}		
+		this.auxSelect(this.formRemover, false, 'unchecked');		
 	}
 
-	onChangeAll() {
+	auxSelect(formArray: Formulario[], statusCheck: boolean, statusValue: string): void {
+		for (let f of formArray) {
+			var checkBox = this.getElement(f.email);
+			checkBox.checked = statusCheck;
+			checkBox.value = statusValue;
+			if (formArray == this.formRemover) {
+				this.deselect(f);
+			} else /* if (formArray == this.formularios) */ {
+				this.selectf(f);
+			}
+		}
+	}
+
+	onChangeAll(): void {
 		var checkBox = this.getElement('checkAll');
 		var statusValue = checkBox.value;
 		checkBox.value = this.changeValue(statusValue);
