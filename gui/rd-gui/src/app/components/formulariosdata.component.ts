@@ -132,11 +132,15 @@ export class FormulariosDataComponent implements OnInit {
 	}
 
 	hideMessage(id: string): void {
-		this.getElement(id).hidden = true;
+		this.setHidden(id, true);
 	}
 
 	showMessage(id: string): void {
-		this.getElement(id).hidden = false;
+		this.setHidden(id, false);
+	}
+
+	setHidden(id: string, status: boolean): void {
+		this.getElement(id).hidden = status;
 	}
 
 	ngOnInit(): void {
