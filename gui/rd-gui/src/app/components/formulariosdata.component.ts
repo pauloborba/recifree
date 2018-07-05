@@ -65,6 +65,18 @@ export class FormulariosDataComponent implements OnInit {
 		}		
 	}
 
+	onChangeAll() {
+		var checkBox = (<HTMLInputElement> document.getElementById('checkAll'));
+		var statusValue = checkBox.value;
+		checkBox.value = this.changeValue(statusValue);
+
+		if (checkBox.value == 'checked') {
+			this.selectAll();
+		} else {
+			this.deselectAll();
+		}
+	}
+
 	removerSelecionados(): void {
 		if (this.formRemover.length > 0) {
 			this.hideMessage('msgUnselected');

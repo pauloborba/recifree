@@ -28,7 +28,7 @@
 			<th>Pergunta 1</th>
 			<th>Pergunta 2</th>
 			<th>Pergunta 3</th>
-			<td><input type="checkbox" (click)="selectAll()" id="checkAll" value="unchecked" /></td>
+			<td><input type="checkbox" (click)="onChangeAll()" id="checkAll" value="unchecked" /></td>
 		</tr>
 		<tr *ngFor="let f of formularios" name="lista_formularios">
 			<td name="lista_nomes">{{f.nome}}</td>
