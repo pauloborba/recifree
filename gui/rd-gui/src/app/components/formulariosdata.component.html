@@ -28,6 +28,7 @@
 			<th>Pergunta 1</th>
 			<th>Pergunta 2</th>
 			<th>Pergunta 3</th>
+			<td><input type="checkbox" (click)="selectAll()" id="checkAll" value="unchecked" /></td>
 		</tr>
 		<tr *ngFor="let f of formularios" name="lista_formularios">
 			<td name="lista_nomes">{{f.nome}}</td>
@@ -39,8 +40,16 @@
 			<td>{{f.pergunta1}}</td>
 			<td>{{f.pergunta2}}</td>
 			<td>{{f.pergunta3}}</td>
-			<td><input type="checkbox" (click)="onChange(f)" [id]="f.email" value="unchecked" /></td>
+			<td><input type="checkbox" (change)="onChange(f)" [id]="f.email" value="unchecked" /></td>
 			<td><button (click)="removerFormulario(f)">Remover</button></td>
+		</tr>
+	</div>
+
+	<div>
+		<tr *ngFor="let f of formRemover" name="lista_formularios">
+			<td name="lista_nomes">{{f.nome}}</td>
+			<td name="lista_emails">{{f.email}}</td>
+			<td>{{f.idade}}</td>
 		</tr>
 	</div>
 

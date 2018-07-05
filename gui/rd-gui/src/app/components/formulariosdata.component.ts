@@ -47,6 +47,24 @@ export class FormulariosDataComponent implements OnInit {
 		this.formRemover = this.formRemover.filter(f => f.email !== formulario.email);
 	}
 
+	selectAll(): void {
+		for (let f of this.formularios) {
+			var checkBox = (<HTMLInputElement> document.getElementById(f.email));
+			checkBox.checked = true;
+			checkBox.value = 'checked'
+			this.selectf(f);
+		}
+	}
+
+	deselectAll(): void {
+		for (let f of this.formRemover) {
+			var checkBox = (<HTMLInputElement> document.getElementById(f.email));
+			checkBox.checked = false;
+			checkBox.value = 'unchecked'
+			this.deselect(f);
+		}		
+	}
+
 	removerSelecionados(): void {
 		if (this.formRemover.length > 0) {
 			this.hideMessage('msgUnselected');
@@ -54,7 +72,7 @@ export class FormulariosDataComponent implements OnInit {
 				this.removerFormulario(f);
 			}
 			this.showMessage('msgSuccess');
-			this.formRemover = []; //reiniciando
+			this.deselectAll();
 		} else {
 			this.showMessage('msgUnselected');
 		}
