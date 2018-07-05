@@ -23,15 +23,28 @@ export class FormulariosDataComponent implements OnInit {
 	}
 
 	onChange(formulario: Formulario): void {
-		var checkBox = this.getElement(formulario.email);
-		var statusValue = checkBox.value;
-		checkBox.value = this.changeValue(statusValue);
-
-		if (checkBox.value == 'checked') {
+		var checkBox = this.newCheckboxValue(formulario.email);
+		if (checkBox == 'checked') {
 			this.selectf(formulario);
 		} else {
 			this.deselect(formulario);
 		}
+	}
+
+	onChangeAll(): void {
+		var checkBox = this.newCheckboxValue('checkAll');
+		if (checkBox == 'checked') {
+			this.selectAll();
+		} else {
+			this.deselectAll();
+		}
+	}
+
+	newCheckboxValue(id: string): string {
+		var checkBox = this.getElement(id);
+		var statusValue = checkBox.value;
+		checkBox.value = this.changeValue(statusValue)
+		return checkBox.value;
 	}
 
 	changeValue(value: string): string {
@@ -69,18 +82,6 @@ export class FormulariosDataComponent implements OnInit {
 			} else /* if (formArray == this.formularios) */ {
 				this.selectf(f);
 			}
-		}
-	}
-
-	onChangeAll(): void {
-		var checkBox = this.getElement('checkAll');
-		var statusValue = checkBox.value;
-		checkBox.value = this.changeValue(statusValue);
-
-		if (checkBox.value == 'checked') {
-			this.selectAll();
-		} else {
-			this.deselectAll();
 		}
 	}
 
