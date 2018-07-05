@@ -82,25 +82,23 @@ export class FormulariosDataComponent implements OnInit {
 	}
 
 	removerSelecionados(): void {
-		if (this.formRemover.length > 0) {
-			this.hideMessage('msgUnselected');
-			for (let f of this.formRemover) {
-				this.removerFormulario(f);
-			}
-			this.showMessage('msgSuccess');
-			this.deselectAll();
-		} else {
-			this.showMessage('msgUnselected');
-		}
+		this.remover(this.formRemover);
 	}
 
 	removerTodos(): void {
-		if (this.formularios.length > 0) {
+		this.remover(this.formularios);
+	}
+
+	remover(formArray: Formulario[]): void {
+		if (formArray.length > 0) {
 			this.hideMessage('msgUnselected');
-			for (let f of this.formularios) {
+			for (let f of formArray) {
 				this.removerFormulario(f);
 			}
 			this.showMessage('msgSuccess');
+			if (formArray == this.formRemover) {
+				this.deselectAll();
+			}
 		} else {
 			this.showMessage('msgUnselected');
 		}
