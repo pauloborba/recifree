@@ -60,6 +60,18 @@ export class FormulariosDataComponent implements OnInit {
 		}
 	}
 
+	removerTodos(): void {
+		if (this.formularios.length > 0) {
+			this.hideMessage('msgUnselected');
+			for (let f of this.formularios) {
+				this.removerFormulario(f);
+			}
+			this.showMessage('msgSuccess');
+		} else {
+			this.showMessage('msgUnselected');
+		}
+	}
+
 	removerFormulario(formulario: Formulario): void {
 		this.formularioService.remover(formulario)
 		.then(formularios => this.formularios = formularios)

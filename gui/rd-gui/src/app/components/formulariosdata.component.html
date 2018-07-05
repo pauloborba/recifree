@@ -5,13 +5,16 @@
 	</div>
 
 	<div>
+		<tr><p>Opçoes: </p></tr>
 		<tr>
-			<td><p>Opçoes: </p></td>
 			<td><button (click)="removerSelecionados()">Remover selecionados</button></td>
 			<td (mousemove)="hideMessage('msgUnselected')" name="msg" id="msgUnselected" hidden>* Nenhum formulário selecionado.</td>
 			<td (mousemove)="hideMessage('msgSuccess')" name="msg" id="msgSuccess" hidden>Formulários removidos com sucesso!</td>
-
 		</tr>
+		<tr>
+			<td><button (click)="removerTodos()">Remover todos</button></td>
+		</tr>
+
 	</div>
 
 	<div>
