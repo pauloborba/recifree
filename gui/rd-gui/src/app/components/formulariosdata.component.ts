@@ -31,15 +31,6 @@ export class FormulariosDataComponent implements OnInit {
 		}
 	}
 
-	onChangeAll(): void {
-		var checkBox = this.newCheckboxValue('checkAll');
-		if (checkBox == 'checked') {
-			this.selectAll();
-		} else {
-			this.deselectAll();
-		}
-	}
-
 	newCheckboxValue(id: string): string {
 		var checkBox = this.getElement(id);
 		var statusValue = checkBox.value;
@@ -57,48 +48,11 @@ export class FormulariosDataComponent implements OnInit {
 	selectf(formulario: Formulario): void {
 		if (!this.formRemover.includes(formulario)) {
 			this.formRemover.push(formulario);
-			/* ao marcar um item, verifica se todos ficaram marcados,
-			ou seja, que os arrays tem o mesmo tamanho. Se for verdade, o checkbox
-			que marca todos é marcado. */
-			if (this.formRemover.length == this.formularioService.getFormularios().then.length) {
-				this.changeCheckboxStatus('checkAll', true, 'checked');
-			}
 		}
 	}
 
 	deselect(formulario: Formulario): void {
 		this.formRemover = this.formRemover.filter(f => f.email !== formulario.email);
-		/* ao desmarcar um item, verifica se checkbox que marca todos esta marcado.
-		Se estiver, ele é desmarcado. */
-		if (this.getElement('checkAll').checked) {
-			this.changeCheckboxStatus('checkAll', null, 'unchecked');
-		}
-	}
-
-	changeCheckboxStatus(elementID: string, statusCheck: boolean, statusValue: string): void {
-		this.getElement(elementID).checked = statusCheck;
-		this.getElement(elementID).value = statusValue;
-	}
-
-	selectAll(): void {
-		this.auxSelect(this.formularios, true, 'checked');
-	}
-
-	deselectAll(): void {
-		this.auxSelect(this.formRemover, false, 'unchecked');		
-	}
-
-	auxSelect(formArray: Formulario[], statusCheck: boolean, statusValue: string): void {
-		for (let f of formArray) {
-			var checkBox = this.getElement(f.email);
-			checkBox.checked = statusCheck;
-			checkBox.value = statusValue;
-			if (formArray == this.formRemover) {
-				this.deselect(f);
-			} else /* if (formArray == this.formularios) */ {
-				this.selectf(f);
-			}
-		}
 	}
 
 	removerSelecionados(): void {
@@ -107,6 +61,8 @@ export class FormulariosDataComponent implements OnInit {
 
 	removerTodos(): void {
 		this.remover(this.formularios);
+		this.formRemover = [];
+		this.formularios = [];
 	}
 
 	remover(formArray: Formulario[]): void {
@@ -116,9 +72,6 @@ export class FormulariosDataComponent implements OnInit {
 				this.removerFormulario(f);
 			}
 			this.showMessage('msgSuccess');
-			if (formArray == this.formRemover) {
-				this.deselectAll();
-			}
 		} else {
 			this.showMessage('msgUnselected');
 		}
