@@ -14,6 +14,14 @@
 		<tr>
 			<td><button (click)="removerTodos()">Remover todos</button></td>
 		</tr>
+		<tr>
+			<td><button (click)="exportarSelecionados()">Baixar selecionados</button></td>
+			<td (mousemove)="hideMessage('msgUnselected')" name="msg" id="msgUnselected" hidden>* Nenhum formulário selecionado.</td>
+			<td (mousemove)="hideMessage('msgSuccess')" name="msg" id="msgSuccess" hidden>Formulários exportados com sucesso!</td>
+		</tr>
+		<tr>
+			<td><button (click)="exportarTodos()">Baixar todos</button></td>
+		</tr>
 
 	</div>
 

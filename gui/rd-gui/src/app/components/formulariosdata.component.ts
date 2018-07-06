@@ -83,6 +83,14 @@ export class FormulariosDataComponent implements OnInit {
 		.catch(erro => alert(erro));
 	}
 
+	exportarSelecionados(): void {
+		//to do
+	}
+
+	exportarTodos(): void {
+		//to do
+	}
+
 	hideMessage(id: string): void {
 		this.setHidden(id, true);
 	}
