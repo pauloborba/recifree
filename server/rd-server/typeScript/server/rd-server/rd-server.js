@@ -14,9 +14,15 @@ app.use(allowCrossDomain);
 app.use(bodyParser.json());
 app.get('/noticias', function (req, res) {
 });
+app.get('/formulario', function (req, res) {
+});
 app.post('/noticia', function (req, res) {
 });
+app.post('/formulario', function (req, res) {
+});
 app.put('/noticia', function (req, res) {
+});
+app.put('/formulario', function (req, res) {
 });
 var server = app.listen(3000, function () {
     console.log('Example app listening on port 3000!');

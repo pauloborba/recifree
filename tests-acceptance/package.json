@@ -1,6 +1,6 @@
 {
-  "name": "testes-acceptance",
-  "description": "Testes de aceitação do teaching assistant",
+  "name": "tests-acceptance",
+  "description": "Testes de aceitação do Recifree",
   "scripts": {
     "tsc": "tsc",
     "test": "protractor typeScript/config/config.js",
