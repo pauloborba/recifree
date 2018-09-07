@@ -39,3 +39,12 @@ export class CadastroDeFormularios {
     return this.formularios;
   }
 }
+
+/*
+
+search(email: string): Formulario {
+    return this.formularios.find(f => f.email == email)
+  }
+
+
+*/
